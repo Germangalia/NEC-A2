@@ -56,3 +56,54 @@ def select_parents_tournament(population: List[List[int]], fitness_values: List[
         parent = tournament_selection(population, fitness_values, tournament_size)
         parents.append(parent)
     return parents
+
+
+def rank_selection(population: List[List[int]], fitness_values: List[int]) -> List[int]:
+    """
+    Rank selection: select based on rank probabilities.
+
+    Individuals are ranked by fitness (best = rank 1).
+    Selection probability is proportional to rank (linear ranking).
+
+    Args:
+        population: List of chromosomes
+        fitness_values: List of fitness values (makespan) for each chromosome
+
+    Returns:
+        Selected chromosome based on rank probability
+    """
+    # Sort indices by fitness (ascending - lower makespan is better)
+    sorted_indices = sorted(range(len(fitness_values)), key=lambda i: fitness_values[i])
+
+    # Assign ranks (1 = best, N = worst)
+    ranks = {idx: rank + 1 for rank, idx in enumerate(sorted_indices)}
+
+    # Calculate selection probabilities (linear ranking)
+    # Probability for rank r: (2 * (N - r + 1)) / (N * (N + 1))
+    N = len(population)
+    probabilities = [(2 * (N - ranks[i] + 1)) / (N * (N + 1)) for i in range(N)]
+
+    # Select based on probabilities
+    selected_idx = random.choices(range(N), weights=probabilities, k=1)[0]
+
+    return population[selected_idx].copy()
+
+
+def select_parents_rank(population: List[List[int]], fitness_values: List[int],
+                        num_parents: int) -> List[List[int]]:
+    """
+    Select multiple parents using rank selection.
+
+    Args:
+        population: List of chromosomes
+        fitness_values: List of fitness values for each chromosome
+        num_parents: Number of parents to select
+
+    Returns:
+        List of selected parent chromosomes
+    """
+    parents = []
+    for _ in range(num_parents):
+        parent = rank_selection(population, fitness_values)
+        parents.append(parent)
+    return parents
