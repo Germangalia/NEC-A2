@@ -191,3 +191,89 @@ def crossover_ox(parents: List[List[int]], crossover_rate: float = 0.8) -> List[
             offspring.append(parent2.copy())
 
     return offspring
+
+
+def partially_mapped_crossover(parent1: List[int], parent2: List[int]) -> Tuple[List[int], List[int]]:
+    """
+    Partially Mapped Crossover (PMX): preserves absolute positions.
+
+    1. Select a random segment from parent1
+    2. Copy this segment to child1 at the same positions
+    3. Create mapping between parent1 and parent2 in the segment
+    4. Use mapping to fill remaining positions
+
+    Args:
+        parent1: First parent chromosome
+        parent2: Second parent chromosome
+
+    Returns:
+        Tuple of (child1, child2)
+    """
+    size = len(parent1)
+    if size < 2:
+        return parent1.copy(), parent2.copy()
+
+    # Select two random cut points
+    start, end = sorted(random.sample(range(size), 2))
+
+    # Initialize children as copies of parents
+    child1 = parent1.copy()
+    child2 = parent2.copy()
+
+    # Create mapping between parent1 and parent2 in the segment
+    mapping1_to_2 = {}
+    mapping2_to_1 = {}
+
+    for i in range(start, end + 1):
+        mapping1_to_2[parent1[i]] = parent2[i]
+        mapping2_to_1[parent2[i]] = parent1[i]
+
+    # Fill remaining positions for child1
+    for i in range(size):
+        if i < start or i > end:
+            value = parent2[i]
+            while value in mapping1_to_2:
+                value = mapping1_to_2[value]
+            child1[i] = value
+
+    # Fill remaining positions for child2
+    for i in range(size):
+        if i < start or i > end:
+            value = parent1[i]
+            while value in mapping2_to_1:
+                value = mapping2_to_1[value]
+            child2[i] = value
+
+    return child1, child2
+
+
+def crossover_pmx(parents: List[List[int]], crossover_rate: float = 0.8) -> List[List[int]]:
+    """
+    Apply Partially Mapped Crossover to a list of parents.
+
+    Args:
+        parents: List of parent chromosomes (must be even number)
+        crossover_rate: Probability of applying crossover
+
+    Returns:
+        List of offspring chromosomes
+    """
+    offspring = []
+
+    for i in range(0, len(parents), 2):
+        if i + 1 >= len(parents):
+            offspring.append(parents[i].copy())
+            continue
+
+        parent1 = parents[i]
+        parent2 = parents[i + 1]
+
+        if random.random() < crossover_rate:
+            child1, child2 = partially_mapped_crossover(parent1, parent2)
+            offspring.append(child1)
+            offspring.append(child2)
+        else:
+            offspring.append(parent1.copy())
+            offspring.append(parent2.copy())
+
+    return offspring
