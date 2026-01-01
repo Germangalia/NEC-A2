@@ -107,3 +107,87 @@ def select_parents_rank(population: List[List[int]], fitness_values: List[int],
         parent = rank_selection(population, fitness_values)
         parents.append(parent)
     return parents
+
+
+# ==================== CROSSOVER OPERATORS ====================
+
+def order_crossover(parent1: List[int], parent2: List[int]) -> Tuple[List[int], List[int]]:
+    """
+    Order Crossover (OX): preserves relative order of elements.
+
+    1. Select a random segment from parent1
+    2. Copy this segment to child1 at the same positions
+    3. Fill remaining positions with elements from parent2 in order
+
+    Args:
+        parent1: First parent chromosome
+        parent2: Second parent chromosome
+
+    Returns:
+        Tuple of (child1, child2)
+    """
+    size = len(parent1)
+    if size < 2:
+        return parent1.copy(), parent2.copy()
+
+    # Select two random cut points
+    start, end = sorted(random.sample(range(size), 2))
+
+    # Initialize children
+    child1 = [-1] * size
+    child2 = [-1] * size
+
+    # Copy segment from parent1 to child1 and parent2 to child2
+    child1[start:end + 1] = parent1[start:end + 1]
+    child2[start:end + 1] = parent2[start:end + 1]
+
+    # Fill remaining positions for child1 using parent2
+    def fill_child(child, other_parent):
+        used = set([x for x in child if x != -1])
+        other_ptr = (end + 1) % size
+
+        for i in range(size):
+            pos = (end + 1 + i) % size
+            if child[pos] == -1:
+                while other_parent[other_ptr] in used:
+                    other_ptr = (other_ptr + 1) % size
+                child[pos] = other_parent[other_ptr]
+                used.add(other_parent[other_ptr])
+                other_ptr = (other_ptr + 1) % size
+
+    fill_child(child1, parent2)
+    fill_child(child2, parent1)
+
+    return child1, child2
+
+
+def crossover_ox(parents: List[List[int]], crossover_rate: float = 0.8) -> List[List[int]]:
+    """
+    Apply Order Crossover to a list of parents.
+
+    Args:
+        parents: List of parent chromosomes (must be even number)
+        crossover_rate: Probability of applying crossover
+
+    Returns:
+        List of offspring chromosomes
+    """
+    offspring = []
+
+    for i in range(0, len(parents), 2):
+        if i + 1 >= len(parents):
+            offspring.append(parents[i].copy())
+            continue
+
+        parent1 = parents[i]
+        parent2 = parents[i + 1]
+
+        if random.random() < crossover_rate:
+            child1, child2 = order_crossover(parent1, parent2)
+            offspring.append(child1)
+            offspring.append(child2)
+        else:
+            offspring.append(parent1.copy())
+            offspring.append(parent2.copy())
+
+    return offspring
