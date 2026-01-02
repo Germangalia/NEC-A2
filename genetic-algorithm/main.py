@@ -242,9 +242,145 @@ class GeneticAlgorithm:
 
 
 def main():
-    """Main function for running GA."""
-    print("Genetic Algorithm for JSSP - Main Module")
-    print("Use this module programmatically or extend with command-line arguments.")
+    """Main function with command-line argument parsing."""
+    import argparse
+
+    parser = argparse.ArgumentParser(
+        description='Genetic Algorithm for Job Shop Scheduling Problem',
+        formatter_class=argparse.ArgumentDefaultsHelpFormatter
+    )
+
+    # Required arguments
+    parser.add_argument('--dataset', type=str, required=True,
+                        help='Path to dataset file (jobshop1.txt)')
+    parser.add_argument('--instance', type=str, required=True,
+                        help='Instance name to solve')
+
+    # GA parameters
+    parser.add_argument('--population-size', type=int, default=100,
+                        help='Population size')
+    parser.add_argument('--max-generations', type=int, default=500,
+                        help='Maximum number of generations')
+    parser.add_argument('--crossover-rate', type=float, default=0.8,
+                        help='Crossover probability')
+    parser.add_argument('--mutation-rate', type=float, default=0.1,
+                        help='Mutation probability')
+    parser.add_argument('--elite-size', type=int, default=2,
+                        help='Number of elite individuals')
+
+    # Operator selection
+    parser.add_argument('--selection', type=str, default='tournament',
+                        choices=['tournament', 'rank'],
+                        help='Selection method')
+    parser.add_argument('--crossover', type=str, default='ox',
+                        choices=['ox', 'pmx'],
+                        help='Crossover method')
+    parser.add_argument('--mutation', type=str, default='swap',
+                        choices=['swap', 'inversion'],
+                        help='Mutation method')
+    parser.add_argument('--tournament-size', type=int, default=3,
+                        help='Tournament size for tournament selection')
+
+    # Termination
+    parser.add_argument('--stationary-generations', type=int, default=50,
+                        help='Generations without improvement to stop')
+
+    # Other
+    parser.add_argument('--random-seed', type=int, default=None,
+                        help='Random seed for reproducibility')
+    parser.add_argument('--output-dir', type=str, default='../results',
+                        help='Output directory for results')
+
+    args = parser.parse_args()
+
+    # Load instance
+    from shared.parser import get_instance_by_name
+    from shared.utils import (
+        save_results_to_csv, plot_evolution, plot_gantt_chart,
+        create_experiment_summary, get_timestamp
+    )
+    from shared.fitness import compute_detailed_schedule
+
+    print(f"Loading instance '{args.instance}' from {args.dataset}")
+    instance = get_instance_by_name(args.dataset, args.instance)
+    print(f"Instance: {instance.num_jobs} jobs, {instance.num_machines} machines")
+
+    # Create and run GA
+    print("\nRunning Genetic Algorithm...")
+    ga = GeneticAlgorithm(
+        instance=instance,
+        population_size=args.population_size,
+        max_generations=args.max_generations,
+        crossover_rate=args.crossover_rate,
+        mutation_rate=args.mutation_rate,
+        elite_size=args.elite_size,
+        selection_method=args.selection,
+        crossover_method=args.crossover,
+        mutation_method=args.mutation,
+        tournament_size=args.tournament_size,
+        stationary_generations=args.stationary_generations,
+        random_seed=args.random_seed
+    )
+
+    best_chromosome, best_makespan = ga.run()
+
+    # Generate outputs
+    timestamp = get_timestamp()
+    output_dir = args.output_dir
+    os.makedirs(output_dir, exist_ok=True)
+
+    # Save evolution plot
+    evolution_path = os.path.join(output_dir, f'{args.instance}_evolution_{timestamp}.png')
+    plot_evolution(ga.best_makespan_history, ga.avg_makespan_history,
+                   title=f'Evolution - {args.instance}', output_path=evolution_path)
+    print(f"Evolution plot saved to {evolution_path}")
+
+    # Generate Gantt chart
+    schedule = compute_detailed_schedule(instance, best_chromosome)
+    gantt_path = os.path.join(output_dir, f'{args.instance}_gantt_{timestamp}.png')
+    plot_gantt_chart(schedule, args.instance, output_path=gantt_path)
+    print(f"Gantt chart saved to {gantt_path}")
+
+    # Save experiment summary
+    summary_path = os.path.join(output_dir, f'{args.instance}_summary_{timestamp}.txt')
+    parameters = {
+        'population_size': args.population_size,
+        'max_generations': args.max_generations,
+        'crossover_rate': args.crossover_rate,
+        'mutation_rate': args.mutation_rate,
+        'elite_size': args.elite_size,
+        'selection_method': args.selection,
+        'crossover_method': args.crossover,
+        'mutation_method': args.mutation,
+        'tournament_size': args.tournament_size,
+        'stationary_generations': args.stationary_generations,
+        'random_seed': args.random_seed
+    }
+    create_experiment_summary(args.instance, parameters, best_makespan, best_chromosome,
+                            len(ga.best_makespan_history), args.population_size, summary_path)
+    print(f"Experiment summary saved to {summary_path}")
+
+    # Save results to CSV
+    results = [{
+        'instance': args.instance,
+        'best_makespan': best_makespan,
+        'generations': len(ga.best_makespan_history),
+        'population_size': args.population_size,
+        'selection_method': args.selection,
+        'crossover_method': args.crossover,
+        'mutation_method': args.mutation,
+        'crossover_rate': args.crossover_rate,
+        'mutation_rate': args.mutation_rate,
+        'elite_size': args.elite_size,
+        'timestamp': timestamp
+    }]
+    csv_path = os.path.join(output_dir, f'{args.instance}_results_{timestamp}.csv')
+    save_results_to_csv(results, csv_path)
+    print(f"Results saved to {csv_path}")
+
+    print(f"\n{'='*60}")
+    print(f"Best makespan: {best_makespan}")
+    print(f"{'='*60}")
 
 
 if __name__ == "__main__":
