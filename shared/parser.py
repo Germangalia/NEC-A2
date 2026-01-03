@@ -40,11 +40,14 @@ def parse_jobshop_file(filepath: str) -> Dict[str, JSSPInstance]:
             instance_name = line.split(' ', 1)[1].strip()
             i += 1
 
-            # Skip description line
-            i += 1
-
-            # Parse num_jobs and num_machines
-            while i < len(lines) and (not lines[i].strip() or lines[i].strip().startswith('+')):
+            # Skip description line and separator lines
+            while i < len(lines):
+                line = lines[i].strip()
+                if line and not line.startswith('+'):
+                    # Check if this is the header line (two integers)
+                    parts = line.split()
+                    if len(parts) == 2 and parts[0].isdigit() and parts[1].isdigit():
+                        break
                 i += 1
 
             if i >= len(lines):
