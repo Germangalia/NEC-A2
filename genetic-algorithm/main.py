@@ -234,7 +234,8 @@ class GeneticAlgorithm:
             # Create new population
             population = offspring + elite_chromosomes
 
-            if generation % 50 == 0:
+            # Print progress every generation for small runs, every 50 for large runs
+            if self.max_generations <= 50 or generation % 50 == 0:
                 print(f"Generation {generation}: Best = {min_fitness}, Avg = {avg_fitness:.2f}")
 
         print(f"Final: Best makespan = {self.best_makespan}")

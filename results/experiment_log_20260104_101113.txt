@@ -1,0 +1,31 @@
+================================================================================
+GA Experiments Log - 20260104_101113
+================================================================================
+
+Loading instance...
+Loaded: 6 jobs, 6 machines
+
+================================================================================
+Running 6 experiments
+================================================================================
+
+================================================================================
+Experiment 1/6
+Config: tournament/ox/swap
+Population: 30, Generations: 50
+================================================================================
+
+============================================================
+Starting GA with configuration:
+  Population size: 30
+  Max generations: 50
+  Selection: tournament
+  Crossover: ox (rate: 0.8)
+  Mutation: swap (rate: 0.1)
+  Elite size: 2
+============================================================
+
+Initializing population...
+Population initialized: 30 chromosomes
+  New best found at generation 0: 69
+Generation   0: Best =  69, Avg =  90.13

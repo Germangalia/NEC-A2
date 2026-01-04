@@ -151,3 +151,37 @@ Each experiment generates:
 - Each job ID appears as many times as it has tasks
 - The k-th occurrence of job j represents the k-th task of job j
 - Example: `[0, 1, 2, 0, 1, 0, 2]` for 3 jobs with varying task counts
+
+## Running Experiments
+
+### Batch Experiments
+
+To run multiple experiments with different parameter combinations:
+
+```bash
+# Run 6 experiments on ft06 (small dataset)
+cd experiments
+python run_experiments_simple.py
+```
+
+This will:
+- Run 6 experiments with different parameter combinations
+- Save detailed execution logs to `results/experiment_log_*.txt`
+- Save summary CSV to `results/experiment_summary_*.csv`
+- Generate evolution plots for each experiment
+
+### Running on Different Datasets
+
+Modify the instance name in `experiments/run_experiments_simple.py`:
+- Small: `ft06` (6 jobs, 6 machines)
+- Medium: `ft10` (10 jobs, 10 machines)  
+- Large: `abz7` (20 jobs, 15 machines)
+
+### Expected Results
+
+For ft06 instance:
+- Optimal makespan: 55
+- GA should find solutions in range 55-65
+- Evolution plots should show convergence over generations
+
+Results files are saved in the `results/` directory with timestamps for tracking.

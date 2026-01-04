@@ -149,7 +149,7 @@ def order_crossover(parent1: List[int], parent2: List[int]) -> Tuple[List[int], 
         for i in range(size):
             pos = (end + 1 + i) % size
             if child[pos] == -1:
-                while other_parent[other_ptr] in used:
+                while other_parent[other_ptr] in used and len(used) < size:
                     other_ptr = (other_ptr + 1) % size
                 child[pos] = other_parent[other_ptr]
                 used.add(other_parent[other_ptr])
