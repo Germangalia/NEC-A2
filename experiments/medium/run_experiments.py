@@ -5,8 +5,10 @@ Simplified GA implementation for testing and generating results.
 
 import sys
 import os
-sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-sys.path.append(os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "genetic-algorithm"))
+# Add project root to path
+project_root = os.path.dirname(os.path.dirname(os.getcwd()))
+sys.path.insert(0, project_root)
+sys.path.append(os.path.join(project_root, "genetic-algorithm"))
 
 import random
 import csv
@@ -16,8 +18,16 @@ from pathlib import Path
 from shared.parser import get_instance_by_name
 from shared.encoding import create_random_chromosome
 from shared.fitness import compute_makespan
-from operators import (tournament_selection, rank_selection, order_crossover, partially_mapped_crossover, 
-                      crossover_ox, crossover_pmx, mutate_swap, mutate_inversion)
+import importlib.util
+spec = importlib.util.spec_from_file_location('operators', os.path.join(project_root, 'genetic-algorithm', 'operators.py'))
+operators = importlib.util.module_from_spec(spec)
+spec.loader.exec_module(operators)
+crossover_ox = operators.crossover_ox
+crossover_pmx = operators.crossover_pmx
+mutate_swap = operators.mutate_swap
+mutate_inversion = operators.mutate_inversion
+tournament_selection = operators.tournament_selection
+rank_selection = operators.rank_selection
 
 class Logger:
     """Logger that captures all output to both console and file."""
@@ -119,7 +129,7 @@ def simple_ga(instance, config):
 
 def main():
     """Run experiments and save results."""
-    results_dir = 'results'
+    results_dir = '../../results/medium'
     os.makedirs(results_dir, exist_ok=True)
 
     timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
@@ -136,7 +146,7 @@ def main():
 
     # Load instance
     print("\nLoading instance...")
-    instance = get_instance_by_name('dataset/jobshop1.txt', 'ft06')
+    instance = get_instance_by_name(os.path.join(project_root, 'dataset/jobshop1.txt'), 'ft10')
     print(f"Loaded: {instance.num_jobs} jobs, {instance.num_machines} machines")
 
     # Experiment configurations
@@ -167,7 +177,7 @@ def main():
 
             result = {
                 'experiment_id': i,
-                'instance': 'ft06',
+                'instance': 'ft10',
                 'population_size': config['population_size'],
                 'max_generations': config['max_generations'],
                 'selection': config['selection'],
@@ -179,10 +189,6 @@ def main():
             }
 
             # Save evolution plot
-            from shared.utils import plot_evolution
-            plot_file = os.path.join(results_dir, f'ft06_exp{i}_evolution_{timestamp}.png')
-            plot_evolution(history, [], title=f'Exp {i} - {config["selection"]}/{config["crossover"]}/{config["mutation"]}', output_path=plot_file)
-            print(f"Plot saved: {plot_file}")
 
             print(f"\nEvolution history: {history}")
 
@@ -194,7 +200,7 @@ def main():
             print(traceback.format_exc())
             result = {
                 'experiment_id': i,
-                'instance': 'ft06',
+                'instance': 'ft10',
                 'population_size': config['population_size'],
                 'max_generations': config['max_generations'],
                 'selection': config['selection'],

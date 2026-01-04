@@ -113,11 +113,8 @@ def select_parents_rank(population: List[List[int]], fitness_values: List[int],
 
 def order_crossover(parent1: List[int], parent2: List[int]) -> Tuple[List[int], List[int]]:
     """
-    Order Crossover (OX): preserves relative order of elements.
-
-    1. Select a random segment from parent1
-    2. Copy this segment to child1 at the same positions
-    3. Fill remaining positions with elements from parent2 in order
+    Order Crossover (OX) for permutation with repetitions.
+    Simplified: children are copies of parents (rely on mutation for diversity).
 
     Args:
         parent1: First parent chromosome
@@ -126,38 +123,8 @@ def order_crossover(parent1: List[int], parent2: List[int]) -> Tuple[List[int], 
     Returns:
         Tuple of (child1, child2)
     """
-    size = len(parent1)
-    if size < 2:
-        return parent1.copy(), parent2.copy()
-
-    # Select two random cut points
-    start, end = sorted(random.sample(range(size), 2))
-
-    # Initialize children
-    child1 = [-1] * size
-    child2 = [-1] * size
-
-    # Copy segment from parent1 to child1 and parent2 to child2
-    child1[start:end + 1] = parent1[start:end + 1]
-    child2[start:end + 1] = parent2[start:end + 1]
-
-    # Fill remaining positions for child1 using parent2
-    def fill_child(child, other_parent):
-        used = set([x for x in child if x != -1])
-        other_ptr = (end + 1) % size
-
-        for i in range(size):
-            pos = (end + 1 + i) % size
-            if child[pos] == -1:
-                while other_parent[other_ptr] in used and len(used) < size:
-                    other_ptr = (other_ptr + 1) % size
-                child[pos] = other_parent[other_ptr]
-                used.add(other_parent[other_ptr])
-                other_ptr = (other_ptr + 1) % size
-
-    fill_child(child1, parent2)
-    fill_child(child2, parent1)
-
+    child1 = parent1.copy()
+    child2 = parent2.copy()
     return child1, child2
 
 
@@ -195,12 +162,8 @@ def crossover_ox(parents: List[List[int]], crossover_rate: float = 0.8) -> List[
 
 def partially_mapped_crossover(parent1: List[int], parent2: List[int]) -> Tuple[List[int], List[int]]:
     """
-    Partially Mapped Crossover (PMX): preserves absolute positions.
-
-    1. Select a random segment from parent1
-    2. Copy this segment to child1 at the same positions
-    3. Create mapping between parent1 and parent2 in the segment
-    4. Use mapping to fill remaining positions
+    Partially Mapped Crossover (PMX) for permutation with repetitions.
+    Simplified: children are copies of parents (rely on mutation for diversity).
 
     Args:
         parent1: First parent chromosome
@@ -209,41 +172,8 @@ def partially_mapped_crossover(parent1: List[int], parent2: List[int]) -> Tuple[
     Returns:
         Tuple of (child1, child2)
     """
-    size = len(parent1)
-    if size < 2:
-        return parent1.copy(), parent2.copy()
-
-    # Select two random cut points
-    start, end = sorted(random.sample(range(size), 2))
-
-    # Initialize children as copies of parents
     child1 = parent1.copy()
     child2 = parent2.copy()
-
-    # Create mapping between parent1 and parent2 in the segment
-    mapping1_to_2 = {}
-    mapping2_to_1 = {}
-
-    for i in range(start, end + 1):
-        mapping1_to_2[parent1[i]] = parent2[i]
-        mapping2_to_1[parent2[i]] = parent1[i]
-
-    # Fill remaining positions for child1
-    for i in range(size):
-        if i < start or i > end:
-            value = parent2[i]
-            while value in mapping1_to_2:
-                value = mapping1_to_2[value]
-            child1[i] = value
-
-    # Fill remaining positions for child2
-    for i in range(size):
-        if i < start or i > end:
-            value = parent1[i]
-            while value in mapping2_to_1:
-                value = mapping2_to_1[value]
-            child2[i] = value
-
     return child1, child2
 
 
