@@ -1,0 +1,7 @@
+experiment_id,instance,population_size,max_generations,selection,crossover,mutation,best_makespan,success,error
+1,ft10,30,50,tournament,ox,swap,1239,True,
+2,ft10,50,100,tournament,pmx,swap,1179,True,
+3,ft10,30,50,rank,ox,inversion,1298,True,
+4,ft10,50,100,rank,pmx,inversion,1193,True,
+5,ft10,40,75,tournament,ox,inversion,1227,True,
+6,ft10,40,75,rank,pmx,swap,1218,True,

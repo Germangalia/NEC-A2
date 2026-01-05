@@ -1,0 +1,687 @@
+================================================================================
+GA Experiments Log - 20260105_122735
+================================================================================
+
+Loading instance...
+Loaded: 20 jobs, 15 machines
+
+================================================================================
+Running 6 experiments
+================================================================================
+
+================================================================================
+Experiment 1/6
+Config: tournament/ox/swap
+Population: 30, Generations: 50
+================================================================================
+
+============================================================
+Starting GA with configuration:
+  Population size: 30
+  Max generations: 50
+  Selection: tournament
+  Crossover: ox (rate: 0.8)
+  Mutation: swap (rate: 0.1)
+  Elite size: 2
+============================================================
+
+Initializing population...
+Population initialized: 30 chromosomes
+  New best found at generation 0: 1158
+Generation   0: Best = 1158, Avg = 1325.00
+Generation   1: Best = 1158, Avg = 1244.03
+Generation   2: Best = 1158, Avg = 1192.13
+Generation   3: Best = 1158, Avg = 1165.43
+Generation   4: Best = 1158, Avg = 1159.00
+  New best found at generation 5: 1136
+Generation   5: Best = 1136, Avg = 1157.27
+Generation   6: Best = 1136, Avg = 1155.93
+Generation   7: Best = 1136, Avg = 1155.20
+  New best found at generation 8: 1089
+Generation   8: Best = 1089, Avg = 1141.97
+Generation   9: Best = 1089, Avg = 1134.20
+  New best found at generation 10: 1074
+Generation  10: Best = 1074, Avg = 1112.93
+Generation  11: Best = 1074, Avg = 1088.70
+Generation  12: Best = 1074, Avg = 1086.10
+Generation  13: Best = 1074, Avg = 1079.30
+Generation  14: Best = 1074, Avg = 1078.20
+  New best found at generation 15: 1055
+Generation  15: Best = 1055, Avg = 1073.37
+Generation  16: Best = 1055, Avg = 1074.93
+Generation  17: Best = 1055, Avg = 1071.73
+  New best found at generation 18: 1044
+Generation  18: Best = 1044, Avg = 1067.93
+Generation  19: Best = 1044, Avg = 1060.63
+Generation  20: Best = 1044, Avg = 1051.60
+Generation  21: Best = 1044, Avg = 1048.33
+  New best found at generation 22: 1033
+Generation  22: Best = 1033, Avg = 1047.73
+  New best found at generation 23: 1002
+Generation  23: Best = 1002, Avg = 1040.77
+Generation  24: Best = 1002, Avg = 1034.37
+Generation  25: Best = 1002, Avg = 1017.20
+Generation  26: Best = 1002, Avg = 1005.27
+Generation  27: Best = 1002, Avg = 1004.30
+Generation  28: Best = 1002, Avg = 1004.77
+  New best found at generation 29: 993
+Generation  29: Best = 993, Avg = 1001.70
+Generation  30: Best = 993, Avg = 1002.27
+Generation  31: Best = 993, Avg = 999.77
+Generation  32: Best = 993, Avg = 1001.53
+Generation  33: Best = 993, Avg = 997.63
+Generation  34: Best = 993, Avg = 996.63
+Generation  35: Best = 993, Avg = 993.23
+Generation  36: Best = 993, Avg = 993.00
+Generation  37: Best = 993, Avg = 997.00
+  New best found at generation 38: 989
+Generation  38: Best = 989, Avg = 994.30
+Generation  39: Best = 989, Avg = 993.43
+Generation  40: Best = 989, Avg = 995.43
+Generation  41: Best = 989, Avg = 991.33
+Generation  42: Best = 989, Avg = 989.53
+Generation  43: Best = 989, Avg = 991.67
+Generation  44: Best = 989, Avg = 989.00
+  New best found at generation 45: 983
+Generation  45: Best = 983, Avg = 988.80
+Generation  46: Best = 983, Avg = 987.60
+Generation  47: Best = 983, Avg = 989.27
+  New best found at generation 48: 965
+Generation  48: Best = 965, Avg = 984.47
+Generation  49: Best = 965, Avg = 980.60
+
+============================================================
+GA completed!
+Final best makespan: 965
+============================================================
+
+Evolution history: [1158, 1158, 1158, 1158, 1158, 1136, 1136, 1136, 1089, 1089, 1074, 1074, 1074, 1074, 1074, 1055, 1055, 1055, 1044, 1044, 1044, 1044, 1033, 1002, 1002, 1002, 1002, 1002, 1002, 993, 993, 993, 993, 993, 993, 993, 993, 993, 989, 989, 989, 989, 989, 989, 989, 983, 983, 983, 965, 965]
+
+================================================================================
+Experiment 2/6
+Config: tournament/pmx/swap
+Population: 50, Generations: 100
+================================================================================
+
+============================================================
+Starting GA with configuration:
+  Population size: 50
+  Max generations: 100
+  Selection: tournament
+  Crossover: pmx (rate: 0.8)
+  Mutation: swap (rate: 0.1)
+  Elite size: 2
+============================================================
+
+Initializing population...
+Population initialized: 50 chromosomes
+  New best found at generation 0: 1073
+Generation   0: Best = 1073, Avg = 1334.94
+Generation   1: Best = 1073, Avg = 1250.98
+Generation   2: Best = 1073, Avg = 1184.20
+Generation   3: Best = 1073, Avg = 1115.58
+Generation   4: Best = 1073, Avg = 1078.92
+Generation   5: Best = 1073, Avg = 1074.94
+  New best found at generation 6: 1069
+Generation   6: Best = 1069, Avg = 1073.02
+Generation   7: Best = 1069, Avg = 1075.14
+Generation   8: Best = 1069, Avg = 1074.80
+  New best found at generation 9: 1056
+Generation   9: Best = 1056, Avg = 1074.28
+Generation  10: Best = 1056, Avg = 1068.14
+  New best found at generation 11: 1048
+Generation  11: Best = 1048, Avg = 1067.10
+Generation  12: Best = 1048, Avg = 1067.48
+  New best found at generation 13: 1047
+Generation  13: Best = 1047, Avg = 1061.62
+Generation  14: Best = 1047, Avg = 1057.26
+Generation  15: Best = 1047, Avg = 1051.06
+Generation  16: Best = 1047, Avg = 1050.46
+  New best found at generation 17: 1043
+Generation  17: Best = 1043, Avg = 1047.78
+  New best found at generation 18: 998
+Generation  18: Best = 998, Avg = 1047.84
+Generation  19: Best = 998, Avg = 1040.40
+Generation  20: Best = 998, Avg = 1030.94
+Generation  21: Best = 998, Avg = 1014.08
+  New best found at generation 22: 976
+Generation  22: Best = 976, Avg = 1000.70
+Generation  23: Best = 976, Avg = 1002.40
+Generation  24: Best = 976, Avg = 991.90
+Generation  25: Best = 976, Avg = 984.60
+Generation  26: Best = 976, Avg = 979.98
+Generation  27: Best = 976, Avg = 978.20
+Generation  28: Best = 976, Avg = 979.42
+Generation  29: Best = 976, Avg = 980.94
+Generation  30: Best = 976, Avg = 976.00
+Generation  31: Best = 976, Avg = 978.28
+Generation  32: Best = 976, Avg = 981.90
+Generation  33: Best = 976, Avg = 978.62
+Generation  34: Best = 976, Avg = 981.82
+  New best found at generation 35: 966
+Generation  35: Best = 966, Avg = 977.24
+Generation  36: Best = 966, Avg = 978.00
+Generation  37: Best = 966, Avg = 975.56
+Generation  38: Best = 966, Avg = 979.22
+  New best found at generation 39: 964
+Generation  39: Best = 964, Avg = 975.44
+Generation  40: Best = 964, Avg = 969.98
+Generation  41: Best = 964, Avg = 967.56
+  New best found at generation 42: 947
+Generation  42: Best = 947, Avg = 971.98
+Generation  43: Best = 947, Avg = 963.80
+Generation  44: Best = 947, Avg = 963.24
+Generation  45: Best = 947, Avg = 958.22
+Generation  46: Best = 947, Avg = 948.56
+Generation  47: Best = 947, Avg = 950.56
+Generation  48: Best = 947, Avg = 950.64
+Generation  49: Best = 947, Avg = 948.12
+Generation  50: Best = 947, Avg = 954.16
+Generation  51: Best = 947, Avg = 951.12
+Generation  52: Best = 947, Avg = 948.80
+Generation  53: Best = 947, Avg = 951.92
+Generation  54: Best = 947, Avg = 951.08
+Generation  55: Best = 947, Avg = 949.04
+Generation  56: Best = 947, Avg = 950.38
+  New best found at generation 57: 937
+Generation  57: Best = 937, Avg = 950.16
+Generation  58: Best = 937, Avg = 952.30
+Generation  59: Best = 937, Avg = 950.34
+Generation  60: Best = 937, Avg = 950.26
+Generation  61: Best = 937, Avg = 946.30
+Generation  62: Best = 937, Avg = 942.08
+Generation  63: Best = 937, Avg = 938.58
+Generation  64: Best = 937, Avg = 940.18
+Generation  65: Best = 937, Avg = 949.08
+Generation  66: Best = 937, Avg = 941.50
+Generation  67: Best = 937, Avg = 939.90
+Generation  68: Best = 937, Avg = 943.54
+  New best found at generation 69: 934
+Generation  69: Best = 934, Avg = 938.72
+Generation  70: Best = 934, Avg = 937.68
+Generation  71: Best = 934, Avg = 942.24
+  New best found at generation 72: 933
+Generation  72: Best = 933, Avg = 939.86
+Generation  73: Best = 933, Avg = 938.94
+Generation  74: Best = 933, Avg = 938.28
+Generation  75: Best = 933, Avg = 938.66
+Generation  76: Best = 933, Avg = 935.06
+Generation  77: Best = 933, Avg = 937.56
+Generation  78: Best = 933, Avg = 933.86
+Generation  79: Best = 933, Avg = 936.12
+Generation  80: Best = 933, Avg = 935.86
+Generation  81: Best = 933, Avg = 934.74
+Generation  82: Best = 933, Avg = 934.42
+Generation  83: Best = 933, Avg = 942.86
+Generation  84: Best = 933, Avg = 937.90
+Generation  85: Best = 933, Avg = 934.86
+Generation  86: Best = 933, Avg = 934.96
+Generation  87: Best = 933, Avg = 934.78
+Generation  88: Best = 933, Avg = 937.94
+Generation  89: Best = 933, Avg = 939.74
+Generation  90: Best = 933, Avg = 941.94
+Generation  91: Best = 933, Avg = 934.76
+Generation  92: Best = 933, Avg = 934.50
+Generation  93: Best = 933, Avg = 940.92
+Generation  94: Best = 933, Avg = 936.68
+Generation  95: Best = 933, Avg = 940.50
+Generation  96: Best = 933, Avg = 940.38
+Generation  97: Best = 933, Avg = 939.44
+Generation  98: Best = 933, Avg = 939.82
+  New best found at generation 99: 929
+Generation  99: Best = 929, Avg = 940.52
+
+============================================================
+GA completed!
+Final best makespan: 929
+============================================================
+
+Evolution history: [1073, 1073, 1073, 1073, 1073, 1073, 1069, 1069, 1069, 1056, 1056, 1048, 1048, 1047, 1047, 1047, 1047, 1043, 998, 998, 998, 998, 976, 976, 976, 976, 976, 976, 976, 976, 976, 976, 976, 976, 976, 966, 966, 966, 966, 964, 964, 964, 947, 947, 947, 947, 947, 947, 947, 947, 947, 947, 947, 947, 947, 947, 947, 937, 937, 937, 937, 937, 937, 937, 937, 937, 937, 937, 937, 934, 934, 934, 933, 933, 933, 933, 933, 933, 933, 933, 933, 933, 933, 933, 933, 933, 933, 933, 933, 933, 933, 933, 933, 933, 933, 933, 933, 933, 933, 929]
+
+================================================================================
+Experiment 3/6
+Config: rank/ox/inversion
+Population: 30, Generations: 50
+================================================================================
+
+============================================================
+Starting GA with configuration:
+  Population size: 30
+  Max generations: 50
+  Selection: rank
+  Crossover: ox (rate: 0.8)
+  Mutation: inversion (rate: 0.1)
+  Elite size: 2
+============================================================
+
+Initializing population...
+Population initialized: 30 chromosomes
+  New best found at generation 0: 1140
+Generation   0: Best = 1140, Avg = 1366.83
+Generation   1: Best = 1140, Avg = 1294.30
+Generation   2: Best = 1140, Avg = 1235.97
+  New best found at generation 3: 1130
+Generation   3: Best = 1130, Avg = 1166.70
+Generation   4: Best = 1130, Avg = 1147.07
+Generation   5: Best = 1130, Avg = 1138.33
+  New best found at generation 6: 1066
+Generation   6: Best = 1066, Avg = 1133.53
+Generation   7: Best = 1066, Avg = 1130.50
+Generation   8: Best = 1066, Avg = 1123.33
+Generation   9: Best = 1066, Avg = 1091.90
+Generation  10: Best = 1066, Avg = 1070.27
+Generation  11: Best = 1066, Avg = 1076.83
+Generation  12: Best = 1066, Avg = 1074.30
+  New best found at generation 13: 1037
+Generation  13: Best = 1037, Avg = 1068.27
+Generation  14: Best = 1037, Avg = 1078.07
+  New best found at generation 15: 1034
+Generation  15: Best = 1034, Avg = 1070.87
+Generation  16: Best = 1034, Avg = 1056.77
+Generation  17: Best = 1034, Avg = 1043.57
+Generation  18: Best = 1034, Avg = 1067.53
+Generation  19: Best = 1034, Avg = 1059.10
+Generation  20: Best = 1034, Avg = 1047.43
+Generation  21: Best = 1034, Avg = 1041.47
+Generation  22: Best = 1034, Avg = 1034.00
+  New best found at generation 23: 1031
+Generation  23: Best = 1031, Avg = 1044.03
+Generation  24: Best = 1031, Avg = 1037.67
+Generation  25: Best = 1031, Avg = 1043.03
+  New best found at generation 26: 1020
+Generation  26: Best = 1020, Avg = 1041.37
+Generation  27: Best = 1020, Avg = 1037.50
+Generation  28: Best = 1020, Avg = 1039.97
+Generation  29: Best = 1020, Avg = 1053.03
+Generation  30: Best = 1020, Avg = 1045.60
+Generation  31: Best = 1020, Avg = 1042.70
+Generation  32: Best = 1020, Avg = 1047.77
+Generation  33: Best = 1020, Avg = 1048.63
+  New best found at generation 34: 1019
+Generation  34: Best = 1019, Avg = 1031.27
+Generation  35: Best = 1019, Avg = 1029.60
+Generation  36: Best = 1019, Avg = 1027.27
+Generation  37: Best = 1019, Avg = 1035.57
+Generation  38: Best = 1019, Avg = 1027.87
+Generation  39: Best = 1019, Avg = 1029.27
+Generation  40: Best = 1019, Avg = 1038.40
+Generation  41: Best = 1019, Avg = 1038.77
+Generation  42: Best = 1019, Avg = 1031.87
+Generation  43: Best = 1019, Avg = 1039.37
+Generation  44: Best = 1019, Avg = 1040.03
+Generation  45: Best = 1019, Avg = 1024.73
+Generation  46: Best = 1019, Avg = 1022.13
+Generation  47: Best = 1019, Avg = 1019.00
+Generation  48: Best = 1019, Avg = 1027.20
+Generation  49: Best = 1019, Avg = 1019.43
+
+============================================================
+GA completed!
+Final best makespan: 1019
+============================================================
+
+Evolution history: [1140, 1140, 1140, 1130, 1130, 1130, 1066, 1066, 1066, 1066, 1066, 1066, 1066, 1037, 1037, 1034, 1034, 1034, 1034, 1034, 1034, 1034, 1034, 1031, 1031, 1031, 1020, 1020, 1020, 1020, 1020, 1020, 1020, 1020, 1019, 1019, 1019, 1019, 1019, 1019, 1019, 1019, 1019, 1019, 1019, 1019, 1019, 1019, 1019, 1019]
+
+================================================================================
+Experiment 4/6
+Config: rank/pmx/inversion
+Population: 50, Generations: 100
+================================================================================
+
+============================================================
+Starting GA with configuration:
+  Population size: 50
+  Max generations: 100
+  Selection: rank
+  Crossover: pmx (rate: 0.8)
+  Mutation: inversion (rate: 0.1)
+  Elite size: 2
+============================================================
+
+Initializing population...
+Population initialized: 50 chromosomes
+  New best found at generation 0: 1133
+Generation   0: Best = 1133, Avg = 1316.32
+Generation   1: Best = 1133, Avg = 1272.02
+Generation   2: Best = 1133, Avg = 1230.32
+Generation   3: Best = 1133, Avg = 1202.50
+Generation   4: Best = 1133, Avg = 1184.66
+  New best found at generation 5: 1128
+Generation   5: Best = 1128, Avg = 1155.14
+Generation   6: Best = 1128, Avg = 1150.34
+Generation   7: Best = 1128, Avg = 1147.54
+  New best found at generation 8: 1113
+Generation   8: Best = 1113, Avg = 1136.98
+Generation   9: Best = 1113, Avg = 1139.20
+Generation  10: Best = 1113, Avg = 1144.16
+Generation  11: Best = 1113, Avg = 1135.04
+Generation  12: Best = 1113, Avg = 1130.46
+Generation  13: Best = 1113, Avg = 1121.52
+Generation  14: Best = 1113, Avg = 1118.42
+  New best found at generation 15: 1108
+Generation  15: Best = 1108, Avg = 1116.34
+Generation  16: Best = 1108, Avg = 1117.42
+Generation  17: Best = 1108, Avg = 1116.58
+  New best found at generation 18: 1069
+Generation  18: Best = 1069, Avg = 1115.96
+  New best found at generation 19: 1042
+Generation  19: Best = 1042, Avg = 1114.06
+Generation  20: Best = 1042, Avg = 1111.96
+Generation  21: Best = 1042, Avg = 1108.40
+Generation  22: Best = 1042, Avg = 1091.06
+Generation  23: Best = 1042, Avg = 1076.06
+Generation  24: Best = 1042, Avg = 1066.86
+  New best found at generation 25: 1032
+Generation  25: Best = 1032, Avg = 1052.78
+Generation  26: Best = 1032, Avg = 1048.68
+Generation  27: Best = 1032, Avg = 1048.62
+  New best found at generation 28: 1019
+Generation  28: Best = 1019, Avg = 1049.12
+Generation  29: Best = 1019, Avg = 1046.30
+Generation  30: Best = 1019, Avg = 1038.94
+Generation  31: Best = 1019, Avg = 1037.56
+Generation  32: Best = 1019, Avg = 1036.26
+Generation  33: Best = 1019, Avg = 1024.98
+  New best found at generation 34: 1006
+Generation  34: Best = 1006, Avg = 1032.44
+Generation  35: Best = 1006, Avg = 1024.50
+  New best found at generation 36: 981
+Generation  36: Best = 981, Avg = 1024.12
+Generation  37: Best = 981, Avg = 1021.46
+Generation  38: Best = 981, Avg = 1016.48
+Generation  39: Best = 981, Avg = 1016.60
+Generation  40: Best = 981, Avg = 1012.40
+Generation  41: Best = 981, Avg = 1010.64
+Generation  42: Best = 981, Avg = 997.66
+Generation  43: Best = 981, Avg = 1000.14
+Generation  44: Best = 981, Avg = 996.14
+Generation  45: Best = 981, Avg = 991.86
+Generation  46: Best = 981, Avg = 983.98
+Generation  47: Best = 981, Avg = 992.52
+Generation  48: Best = 981, Avg = 991.18
+Generation  49: Best = 981, Avg = 991.52
+Generation  50: Best = 981, Avg = 998.12
+Generation  51: Best = 981, Avg = 991.28
+Generation  52: Best = 981, Avg = 982.36
+Generation  53: Best = 981, Avg = 992.48
+Generation  54: Best = 981, Avg = 989.18
+Generation  55: Best = 981, Avg = 998.60
+Generation  56: Best = 981, Avg = 987.98
+  New best found at generation 57: 976
+Generation  57: Best = 976, Avg = 994.26
+Generation  58: Best = 976, Avg = 1004.28
+Generation  59: Best = 976, Avg = 1006.76
+  New best found at generation 60: 964
+Generation  60: Best = 964, Avg = 993.50
+Generation  61: Best = 964, Avg = 989.42
+Generation  62: Best = 964, Avg = 989.14
+Generation  63: Best = 964, Avg = 984.12
+Generation  64: Best = 964, Avg = 978.22
+Generation  65: Best = 964, Avg = 977.18
+Generation  66: Best = 964, Avg = 984.54
+Generation  67: Best = 964, Avg = 970.54
+  New best found at generation 68: 954
+Generation  68: Best = 954, Avg = 971.40
+Generation  69: Best = 954, Avg = 970.34
+Generation  70: Best = 954, Avg = 981.08
+Generation  71: Best = 954, Avg = 978.68
+Generation  72: Best = 954, Avg = 975.38
+Generation  73: Best = 954, Avg = 976.92
+  New best found at generation 74: 950
+Generation  74: Best = 950, Avg = 966.46
+Generation  75: Best = 950, Avg = 960.90
+Generation  76: Best = 950, Avg = 966.20
+Generation  77: Best = 950, Avg = 969.32
+Generation  78: Best = 950, Avg = 968.58
+Generation  79: Best = 950, Avg = 955.20
+Generation  80: Best = 950, Avg = 957.42
+Generation  81: Best = 950, Avg = 953.42
+Generation  82: Best = 950, Avg = 970.92
+Generation  83: Best = 950, Avg = 953.16
+Generation  84: Best = 950, Avg = 970.90
+Generation  85: Best = 950, Avg = 965.28
+Generation  86: Best = 950, Avg = 965.26
+Generation  87: Best = 950, Avg = 964.52
+Generation  88: Best = 950, Avg = 982.50
+Generation  89: Best = 950, Avg = 961.10
+Generation  90: Best = 950, Avg = 959.98
+Generation  91: Best = 950, Avg = 955.58
+Generation  92: Best = 950, Avg = 954.80
+Generation  93: Best = 950, Avg = 964.58
+Generation  94: Best = 950, Avg = 973.70
+Generation  95: Best = 950, Avg = 961.28
+Generation  96: Best = 950, Avg = 951.68
+Generation  97: Best = 950, Avg = 961.48
+Generation  98: Best = 950, Avg = 958.50
+Generation  99: Best = 950, Avg = 958.42
+
+============================================================
+GA completed!
+Final best makespan: 950
+============================================================
+
+Evolution history: [1133, 1133, 1133, 1133, 1133, 1128, 1128, 1128, 1113, 1113, 1113, 1113, 1113, 1113, 1113, 1108, 1108, 1108, 1069, 1042, 1042, 1042, 1042, 1042, 1042, 1032, 1032, 1032, 1019, 1019, 1019, 1019, 1019, 1019, 1006, 1006, 981, 981, 981, 981, 981, 981, 981, 981, 981, 981, 981, 981, 981, 981, 981, 981, 981, 981, 981, 981, 981, 976, 976, 976, 964, 964, 964, 964, 964, 964, 964, 964, 954, 954, 954, 954, 954, 954, 950, 950, 950, 950, 950, 950, 950, 950, 950, 950, 950, 950, 950, 950, 950, 950, 950, 950, 950, 950, 950, 950, 950, 950, 950, 950]
+
+================================================================================
+Experiment 5/6
+Config: tournament/ox/inversion
+Population: 40, Generations: 75
+================================================================================
+
+============================================================
+Starting GA with configuration:
+  Population size: 40
+  Max generations: 75
+  Selection: tournament
+  Crossover: ox (rate: 0.8)
+  Mutation: inversion (rate: 0.1)
+  Elite size: 2
+============================================================
+
+Initializing population...
+Population initialized: 40 chromosomes
+  New best found at generation 0: 1131
+Generation   0: Best = 1131, Avg = 1321.58
+Generation   1: Best = 1131, Avg = 1234.00
+Generation   2: Best = 1131, Avg = 1181.60
+Generation   3: Best = 1131, Avg = 1151.67
+Generation   4: Best = 1131, Avg = 1141.80
+Generation   5: Best = 1131, Avg = 1145.53
+Generation   6: Best = 1131, Avg = 1135.80
+Generation   7: Best = 1131, Avg = 1132.97
+Generation   8: Best = 1131, Avg = 1136.38
+  New best found at generation 9: 1069
+Generation   9: Best = 1069, Avg = 1134.30
+Generation  10: Best = 1069, Avg = 1121.88
+Generation  11: Best = 1069, Avg = 1125.45
+  New best found at generation 12: 1067
+Generation  12: Best = 1067, Avg = 1086.62
+Generation  13: Best = 1067, Avg = 1076.65
+Generation  14: Best = 1067, Avg = 1084.17
+Generation  15: Best = 1067, Avg = 1082.03
+Generation  16: Best = 1067, Avg = 1084.00
+Generation  17: Best = 1067, Avg = 1083.72
+Generation  18: Best = 1067, Avg = 1073.78
+Generation  19: Best = 1067, Avg = 1076.22
+Generation  20: Best = 1067, Avg = 1082.12
+Generation  21: Best = 1067, Avg = 1072.17
+Generation  22: Best = 1067, Avg = 1081.62
+  New best found at generation 23: 1063
+Generation  23: Best = 1063, Avg = 1066.90
+Generation  24: Best = 1063, Avg = 1067.88
+Generation  25: Best = 1063, Avg = 1071.92
+Generation  26: Best = 1063, Avg = 1070.03
+Generation  27: Best = 1063, Avg = 1085.28
+Generation  28: Best = 1063, Avg = 1067.10
+Generation  29: Best = 1063, Avg = 1080.90
+Generation  30: Best = 1063, Avg = 1083.45
+Generation  31: Best = 1063, Avg = 1068.80
+  New best found at generation 32: 1062
+Generation  32: Best = 1062, Avg = 1072.83
+Generation  33: Best = 1062, Avg = 1063.22
+Generation  34: Best = 1062, Avg = 1073.75
+Generation  35: Best = 1062, Avg = 1062.45
+  New best found at generation 36: 1046
+Generation  36: Best = 1046, Avg = 1074.03
+Generation  37: Best = 1046, Avg = 1087.05
+Generation  38: Best = 1046, Avg = 1073.22
+  New best found at generation 39: 1032
+Generation  39: Best = 1032, Avg = 1058.90
+Generation  40: Best = 1032, Avg = 1056.38
+Generation  41: Best = 1032, Avg = 1046.20
+Generation  42: Best = 1032, Avg = 1054.22
+Generation  43: Best = 1032, Avg = 1038.15
+Generation  44: Best = 1032, Avg = 1045.10
+  New best found at generation 45: 1031
+Generation  45: Best = 1031, Avg = 1036.60
+Generation  46: Best = 1031, Avg = 1039.83
+Generation  47: Best = 1031, Avg = 1031.60
+Generation  48: Best = 1031, Avg = 1031.47
+Generation  49: Best = 1031, Avg = 1034.67
+Generation  50: Best = 1031, Avg = 1040.50
+  New best found at generation 51: 1020
+Generation  51: Best = 1020, Avg = 1037.47
+Generation  52: Best = 1020, Avg = 1033.90
+Generation  53: Best = 1020, Avg = 1029.00
+Generation  54: Best = 1020, Avg = 1038.33
+Generation  55: Best = 1020, Avg = 1046.70
+  New best found at generation 56: 988
+Generation  56: Best = 988, Avg = 1022.30
+Generation  57: Best = 988, Avg = 1029.90
+Generation  58: Best = 988, Avg = 1015.40
+Generation  59: Best = 988, Avg = 1010.08
+Generation  60: Best = 988, Avg = 1021.05
+Generation  61: Best = 988, Avg = 991.12
+Generation  62: Best = 988, Avg = 1011.60
+Generation  63: Best = 988, Avg = 1005.23
+Generation  64: Best = 988, Avg = 1023.90
+Generation  65: Best = 988, Avg = 993.40
+Generation  66: Best = 988, Avg = 1008.33
+Generation  67: Best = 988, Avg = 1010.50
+Generation  68: Best = 988, Avg = 1015.67
+Generation  69: Best = 988, Avg = 995.20
+Generation  70: Best = 988, Avg = 993.15
+Generation  71: Best = 988, Avg = 993.77
+Generation  72: Best = 988, Avg = 999.05
+Generation  73: Best = 988, Avg = 1006.70
+Generation  74: Best = 988, Avg = 1000.38
+
+============================================================
+GA completed!
+Final best makespan: 988
+============================================================
+
+Evolution history: [1131, 1131, 1131, 1131, 1131, 1131, 1131, 1131, 1131, 1069, 1069, 1069, 1067, 1067, 1067, 1067, 1067, 1067, 1067, 1067, 1067, 1067, 1067, 1063, 1063, 1063, 1063, 1063, 1063, 1063, 1063, 1063, 1062, 1062, 1062, 1062, 1046, 1046, 1046, 1032, 1032, 1032, 1032, 1032, 1032, 1031, 1031, 1031, 1031, 1031, 1031, 1020, 1020, 1020, 1020, 1020, 988, 988, 988, 988, 988, 988, 988, 988, 988, 988, 988, 988, 988, 988, 988, 988, 988, 988, 988]
+
+================================================================================
+Experiment 6/6
+Config: rank/pmx/swap
+Population: 40, Generations: 75
+================================================================================
+
+============================================================
+Starting GA with configuration:
+  Population size: 40
+  Max generations: 75
+  Selection: rank
+  Crossover: pmx (rate: 0.8)
+  Mutation: swap (rate: 0.1)
+  Elite size: 2
+============================================================
+
+Initializing population...
+Population initialized: 40 chromosomes
+  New best found at generation 0: 1089
+Generation   0: Best = 1089, Avg = 1345.65
+Generation   1: Best = 1089, Avg = 1293.12
+Generation   2: Best = 1089, Avg = 1252.33
+Generation   3: Best = 1089, Avg = 1181.03
+  New best found at generation 4: 1063
+Generation   4: Best = 1063, Avg = 1136.05
+Generation   5: Best = 1063, Avg = 1107.85
+Generation   6: Best = 1063, Avg = 1090.45
+Generation   7: Best = 1063, Avg = 1080.22
+  New best found at generation 8: 1043
+Generation   8: Best = 1043, Avg = 1073.28
+Generation   9: Best = 1043, Avg = 1065.65
+  New best found at generation 10: 1040
+Generation  10: Best = 1040, Avg = 1064.42
+Generation  11: Best = 1040, Avg = 1059.58
+Generation  12: Best = 1040, Avg = 1051.62
+  New best found at generation 13: 1020
+Generation  13: Best = 1020, Avg = 1043.35
+Generation  14: Best = 1020, Avg = 1041.75
+Generation  15: Best = 1020, Avg = 1041.70
+Generation  16: Best = 1020, Avg = 1042.30
+  New best found at generation 17: 997
+Generation  17: Best = 997, Avg = 1034.90
+Generation  18: Best = 997, Avg = 1030.03
+  New best found at generation 19: 976
+Generation  19: Best = 976, Avg = 1026.03
+Generation  20: Best = 976, Avg = 1017.92
+Generation  21: Best = 976, Avg = 1012.55
+Generation  22: Best = 976, Avg = 999.98
+Generation  23: Best = 976, Avg = 989.67
+  New best found at generation 24: 970
+Generation  24: Best = 970, Avg = 976.58
+Generation  25: Best = 970, Avg = 975.70
+Generation  26: Best = 970, Avg = 982.05
+Generation  27: Best = 970, Avg = 978.73
+Generation  28: Best = 970, Avg = 975.85
+Generation  29: Best = 970, Avg = 974.77
+Generation  30: Best = 970, Avg = 977.85
+Generation  31: Best = 970, Avg = 974.98
+Generation  32: Best = 970, Avg = 971.95
+Generation  33: Best = 970, Avg = 971.48
+Generation  34: Best = 970, Avg = 973.25
+Generation  35: Best = 970, Avg = 978.25
+Generation  36: Best = 970, Avg = 976.40
+Generation  37: Best = 970, Avg = 972.27
+Generation  38: Best = 970, Avg = 971.88
+Generation  39: Best = 970, Avg = 972.70
+Generation  40: Best = 970, Avg = 976.17
+Generation  41: Best = 970, Avg = 976.85
+Generation  42: Best = 970, Avg = 972.35
+Generation  43: Best = 970, Avg = 980.45
+Generation  44: Best = 970, Avg = 974.80
+Generation  45: Best = 970, Avg = 973.27
+Generation  46: Best = 970, Avg = 970.70
+Generation  47: Best = 970, Avg = 973.25
+Generation  48: Best = 970, Avg = 974.85
+Generation  49: Best = 970, Avg = 974.77
+Generation  50: Best = 970, Avg = 976.75
+  New best found at generation 51: 965
+Generation  51: Best = 965, Avg = 969.88
+Generation  52: Best = 965, Avg = 973.45
+Generation  53: Best = 965, Avg = 975.17
+Generation  54: Best = 965, Avg = 972.12
+Generation  55: Best = 965, Avg = 971.23
+  New best found at generation 56: 950
+Generation  56: Best = 950, Avg = 969.08
+Generation  57: Best = 950, Avg = 965.30
+Generation  58: Best = 950, Avg = 969.20
+Generation  59: Best = 950, Avg = 964.08
+Generation  60: Best = 950, Avg = 958.92
+Generation  61: Best = 950, Avg = 955.92
+Generation  62: Best = 950, Avg = 953.95
+Generation  63: Best = 950, Avg = 955.92
+Generation  64: Best = 950, Avg = 953.02
+Generation  65: Best = 950, Avg = 950.50
+Generation  66: Best = 950, Avg = 950.85
+  New best found at generation 67: 949
+Generation  67: Best = 949, Avg = 954.30
+  New best found at generation 68: 944
+Generation  68: Best = 944, Avg = 957.10
+Generation  69: Best = 944, Avg = 953.35
+Generation  70: Best = 944, Avg = 952.10
+Generation  71: Best = 944, Avg = 953.20
+Generation  72: Best = 944, Avg = 950.38
+Generation  73: Best = 944, Avg = 945.52
+Generation  74: Best = 944, Avg = 944.67
+
+============================================================
+GA completed!
+Final best makespan: 944
+============================================================
+
+Evolution history: [1089, 1089, 1089, 1089, 1063, 1063, 1063, 1063, 1043, 1043, 1040, 1040, 1040, 1020, 1020, 1020, 1020, 997, 997, 976, 976, 976, 976, 976, 970, 970, 970, 970, 970, 970, 970, 970, 970, 970, 970, 970, 970, 970, 970, 970, 970, 970, 970, 970, 970, 970, 970, 970, 970, 970, 970, 965, 965, 965, 965, 965, 950, 950, 950, 950, 950, 950, 950, 950, 950, 950, 950, 949, 944, 944, 944, 944, 944, 944, 944]

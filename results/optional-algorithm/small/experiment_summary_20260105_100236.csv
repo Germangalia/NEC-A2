@@ -1,4 +1,0 @@
-experiment_id,instance,max_iterations,initial_temperature,cooling_rate,mutation,best_makespan,success,error
-1,ft06,5000,1000,0.995,swap,55,True,
-2,ft06,5000,1000,0.995,inversion,55,True,
-3,ft06,10000,1500,0.99,swap,55,True,
