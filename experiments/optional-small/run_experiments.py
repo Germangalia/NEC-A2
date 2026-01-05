@@ -55,6 +55,7 @@ def simulated_annealing(instance, config):
     current_cost = compute_makespan(instance, current)
     best = current.copy()
     best_cost = current_cost
+    best_history = [best_cost]
     
     for i in range(max_iter):
         if mutation == 'swap':
@@ -71,6 +72,7 @@ def simulated_annealing(instance, config):
                 best = current.copy()
                 best_cost = current_cost
         
+        best_history.append(best_cost)
         temp *= cooling
         
         if i % 1000 == 0:
@@ -81,7 +83,7 @@ def simulated_annealing(instance, config):
     print(f"Final best makespan: {best_cost}")
     print(f"{'='*60}")
 
-    return best, best_cost
+    return best, best_cost, best_history
 
 def main():
     """Run SA experiments and save results."""
@@ -118,7 +120,7 @@ def main():
         print(f"{'='*80}")
 
         try:
-            best_chrom, best_ms = simulated_annealing(instance, config)
+            best_chrom, best_ms, history = simulated_annealing(instance, config)
 
             result = {
                 'experiment_id': exp_id,
@@ -129,7 +131,8 @@ def main():
                 'mutation': config['mutation'],
                 'best_makespan': best_ms,
                 'success': True,
-                'error': ''
+                'error': '',
+                'history': history
             }
 
             all_results.append(result)
@@ -161,7 +164,9 @@ def main():
                      'initial_temperature', 'cooling_rate', 'mutation', 'best_makespan', 'success', 'error']
         writer = csv.DictWriter(f, fieldnames=fieldnames)
         writer.writeheader()
-        writer.writerows(all_results)
+        # Write results without 'history' field
+        csv_results = [{k: v for k, v in r.items() if k != 'history'} for r in all_results]
+        writer.writerows(csv_results)
 
     print(f"\n{'='*80}")
     print(f"All experiments completed!")
@@ -176,6 +181,66 @@ def main():
         makespan = r['best_makespan'] if r['best_makespan'] else "N/A"
         status = "✓" if r['success'] else "✗"
         print(f"{r['experiment_id']:<3} {r['max_iterations']:<6} {r['initial_temperature']:<6} {r['mutation']:<10} {makespan:<6} {status:<8}")
+
+    # Generate plots
+    print(f"\n{'='*80}")
+    print(f"Generating evolution plots...")
+    print(f"{'='*80}")
+    
+    import matplotlib.pyplot as plt
+    
+    # Individual plots
+    fig, axes = plt.subplots(1, len(all_results), figsize=(6*len(all_results), 4))
+    if len(all_results) == 1:
+        axes = [axes]
+    
+    global_best = min([r['best_makespan'] for r in all_results if r['best_makespan']])
+    
+    for i, result in enumerate(all_results):
+        ax = axes[i]
+        history = result.get('history', [])
+        iterations = range(len(history))
+        
+        ax.plot(iterations, history, linewidth=2, color='#2E86AB')
+        ax.set_xlabel('Iteration', fontsize=12)
+        ax.set_ylabel('Best Makespan', fontsize=12)
+        ax.set_title(f"Exp {result['experiment_id']}: {result['mutation']}, iter={result['max_iterations']}\nBest: {result['best_makespan']}", fontsize=11)
+        ax.grid(True, alpha=0.3)
+        
+        if result['best_makespan'] == global_best:
+            ax.set_facecolor('#E8F4F8')
+            ax.set_title(f"Exp {result['experiment_id']}: {result['mutation']}, iter={result['max_iterations']}\nBest: {result['best_makespan']} ★", fontsize=11)
+    
+    plt.tight_layout()
+    plot_file = os.path.join(results_dir, f'sa_evolution_plots_ft06_{timestamp}.png')
+    plt.savefig(plot_file, dpi=150, bbox_inches='tight')
+    plt.close()
+    
+    # Comparison plot
+    fig, ax = plt.subplots(figsize=(12, 6))
+    
+    for result in all_results:
+        history = result.get('history', [])
+        iterations = range(len(history))
+        label = f"Exp {result['experiment_id']}: {result['mutation']}, iter={result['max_iterations']}"
+        color = '#2E86AB' if result['best_makespan'] == global_best else '#A23B72'
+        linewidth = 2.5 if result['best_makespan'] == global_best else 1.5
+        ax.plot(iterations, history, label=label, linewidth=linewidth, color=color)
+    
+    ax.set_xlabel('Iteration', fontsize=14)
+    ax.set_ylabel('Best Makespan', fontsize=14)
+    ax.set_title('Simulated Annealing: Comparison of All Experiments (ft06)', fontsize=16, fontweight='bold')
+    ax.grid(True, alpha=0.3)
+    ax.legend(loc='upper right', fontsize=10)
+    
+    plt.tight_layout()
+    comparison_file = os.path.join(results_dir, f'sa_evolution_comparison_ft06_{timestamp}.png')
+    plt.savefig(comparison_file, dpi=150, bbox_inches='tight')
+    plt.close()
+    
+    print(f"\nEvolution plots generated:")
+    print(f"  - {plot_file}")
+    print(f"  - {comparison_file}")
 
 if __name__ == '__main__':
     main()

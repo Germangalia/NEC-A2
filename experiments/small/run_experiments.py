@@ -14,6 +14,7 @@ import random
 import csv
 import datetime
 from pathlib import Path
+import matplotlib.pyplot as plt
 
 from shared.parser import get_instance_by_name
 from shared.encoding import create_random_chromosome
@@ -127,6 +128,90 @@ def simple_ga(instance, config):
 
     return best_chromosome, best_makespan, best_makespan_history
 
+def generate_evolution_plots(all_results, all_histories, results_dir, instance_name, timestamp):
+    """Generate evolution plots for all experiments."""
+    
+    # Create figure with subplots for all experiments
+    fig, axes = plt.subplots(2, 3, figsize=(18, 10))
+    fig.suptitle(f'GA Evolution Plots - {instance_name.upper()}', fontsize=16, fontweight='bold')
+    
+    # Find best solution across all experiments
+    all_best = [min(history) if history else float('inf') for history in all_histories]
+    global_best = min(all_best) if all_best else None
+    
+    # Plot each experiment
+    for idx, (result, history) in enumerate(zip(all_results, all_histories)):
+        row = idx // 3
+        col = idx % 3
+        ax = axes[row, col]
+        
+        if not history or not result['success']:
+            ax.text(0.5, 0.5, 'No data', ha='center', va='center')
+            continue
+        
+        generations = list(range(len(history)))
+        
+        # Plot evolution
+        ax.plot(generations, history, 'b-', linewidth=2, label='Best Makespan')
+        ax.fill_between(generations, history, alpha=0.3)
+        
+        # Mark the best solution
+        best_value = min(history)
+        best_gen = history.index(best_value)
+        ax.scatter([best_gen], [best_value], color='red', s=100, zorder=5, 
+                  label=f'Best: {best_value}')
+        
+        # Highlight if this is the global best
+        if best_value == global_best:
+            ax.set_title(f"Exp {result['experiment_id']}: {result['selection']}/{result['crossover']}/{result['mutation']}\n★ GLOBAL BEST ({best_value})", 
+                        fontweight='bold', color='darkgreen')
+        else:
+            ax.set_title(f"Exp {result['experiment_id']}: {result['selection']}/{result['crossover']}/{result['mutation']}\nBest: {best_value}")
+        
+        ax.set_xlabel('Generation')
+        ax.set_ylabel('Makespan')
+        ax.grid(True, alpha=0.3)
+        ax.legend(loc='upper right')
+    
+    # Adjust layout
+    plt.tight_layout()
+    
+    # Save plot
+    output_file = os.path.join(results_dir, f'evolution_plots_{instance_name}_{timestamp}.png')
+    plt.savefig(output_file, dpi=300, bbox_inches='tight')
+    plt.close()
+    
+    # Also create a comparison plot showing all experiments together
+    fig, ax = plt.subplots(figsize=(14, 8))
+    
+    colors = plt.cm.tab10(range(len(all_histories)))
+    
+    for idx, (result, history) in enumerate(zip(all_results, all_histories)):
+        if not history or not result['success']:
+            continue
+        
+        generations = list(range(len(history)))
+        label = f"Exp {result['experiment_id']}: {result['selection']}/{result['crossover']}/{result['mutation']} (Best: {min(history)})"
+        ax.plot(generations, history, linewidth=2, color=colors[idx], label=label, alpha=0.8)
+    
+    ax.set_xlabel('Generation', fontsize=12)
+    ax.set_ylabel('Makespan', fontsize=12)
+    ax.set_title(f'GA Evolution Comparison - {instance_name.upper()}', 
+                fontsize=14, fontweight='bold')
+    ax.grid(True, alpha=0.3)
+    ax.legend(loc='upper right', fontsize=9)
+    
+    plt.tight_layout()
+    
+    # Save comparison plot
+    output_file = os.path.join(results_dir, f'evolution_comparison_{instance_name}_{timestamp}.png')
+    plt.savefig(output_file, dpi=300, bbox_inches='tight')
+    plt.close()
+    
+    print(f"\nEvolution plots generated:")
+    print(f"  - {output_file}")
+    print(f"  - {os.path.join(results_dir, f'evolution_plots_{instance_name}_{timestamp}.png')}")
+
 def main():
     """Run experiments and save results."""
     results_dir = '../../results/small'
@@ -160,6 +245,7 @@ def main():
     ]
 
     all_results = []
+    all_histories = []
 
     print(f"\n{'='*80}")
     print(f"Running {len(experiments)} experiments")
@@ -174,6 +260,7 @@ def main():
 
         try:
             best_chrom, best_ms, history = simple_ga(instance, config)
+            all_histories.append(history)
 
             result = {
                 'experiment_id': i,
@@ -187,8 +274,6 @@ def main():
                 'success': True,
                 'error': ''
             }
-
-            # Save evolution plot
 
             print(f"\nEvolution history: {history}")
 
@@ -210,11 +295,18 @@ def main():
                 'success': False,
                 'error': str(e)
             }
+            all_histories.append([])
 
         all_results.append(result)
 
     # Restore stdout
     sys.stdout = original_stdout
+    
+    # Generate evolution plots
+    print(f"\n{'='*80}")
+    print("Generating evolution plots...")
+    print(f"{'='*80}")
+    generate_evolution_plots(all_results, all_histories, results_dir, 'ft06', timestamp)
 
     # Save summary CSV
     summary_file = os.path.join(results_dir, f'experiment_summary_{timestamp}.csv')
