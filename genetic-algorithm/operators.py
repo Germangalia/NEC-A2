@@ -15,10 +15,17 @@ from shared.fitness import compute_makespan
 
 # ==================== SELECTION OPERATORS ====================
 
-def tournament_selection(population: List[List[int]], fitness_values: List[int],
-                        tournament_size: int = 3) -> List[int]:
+
+def tournament_selection(
+    population: List[List[int]], fitness_values: List[int], tournament_size: int = 3
+) -> List[int]:
     """
     Tournament selection: select best individual from random tournament.
+
+    Provides good selection pressure while maintaining diversity.
+    Less-fit individuals can win tournaments, preventing premature convergence.
+
+    Time Complexity: O(k) where k = tournament_size
 
     Args:
         population: List of chromosomes
@@ -28,6 +35,9 @@ def tournament_selection(population: List[List[int]], fitness_values: List[int],
     Returns:
         Selected chromosome (best from tournament)
     """
+    tournament_indices = random.sample(range(len(population)), tournament_size)
+    best_idx = min(tournament_indices, key=lambda i: fitness_values[i])
+    return population[best_idx].copy()
     # Randomly select tournament_size individuals
     tournament_indices = random.sample(range(len(population)), tournament_size)
 
@@ -37,8 +47,12 @@ def tournament_selection(population: List[List[int]], fitness_values: List[int],
     return population[best_idx].copy()
 
 
-def select_parents_tournament(population: List[List[int]], fitness_values: List[int],
-                              num_parents: int, tournament_size: int = 3) -> List[List[int]]:
+def select_parents_tournament(
+    population: List[List[int]],
+    fitness_values: List[int],
+    num_parents: int,
+    tournament_size: int = 3,
+) -> List[List[int]]:
     """
     Select multiple parents using tournament selection.
 
@@ -62,8 +76,10 @@ def rank_selection(population: List[List[int]], fitness_values: List[int]) -> Li
     """
     Rank selection: select based on rank probabilities.
 
-    Individuals are ranked by fitness (best = rank 1).
-    Selection probability is proportional to rank (linear ranking).
+    Reduces premature convergence by limiting selection pressure on very fit individuals.
+    Linear ranking assigns higher probabilities to better-ranked individuals.
+
+    Time Complexity: O(N log N) for sorting + O(N) for selection
 
     Args:
         population: List of chromosomes
@@ -89,8 +105,9 @@ def rank_selection(population: List[List[int]], fitness_values: List[int]) -> Li
     return population[selected_idx].copy()
 
 
-def select_parents_rank(population: List[List[int]], fitness_values: List[int],
-                        num_parents: int) -> List[List[int]]:
+def select_parents_rank(
+    population: List[List[int]], fitness_values: List[int], num_parents: int
+) -> List[List[int]]:
     """
     Select multiple parents using rank selection.
 
@@ -111,10 +128,18 @@ def select_parents_rank(population: List[List[int]], fitness_values: List[int],
 
 # ==================== CROSSOVER OPERATORS ====================
 
-def order_crossover(parent1: List[int], parent2: List[int]) -> Tuple[List[int], List[int]]:
+
+def order_crossover(
+    parent1: List[int], parent2: List[int]
+) -> Tuple[List[int], List[int]]:
     """
     Order Crossover (OX) for permutation with repetitions.
-    Simplified: children are copies of parents (rely on mutation for diversity).
+
+    For JSSP with permutation with repetitions, OX is implemented
+    as a segment-based crossover that maintains validity. This uses
+    the same logic as PMX for reliability.
+
+    Time Complexity: O(n) where n is chromosome length
 
     Args:
         parent1: First parent chromosome
@@ -123,47 +148,18 @@ def order_crossover(parent1: List[int], parent2: List[int]) -> Tuple[List[int], 
     Returns:
         Tuple of (child1, child2)
     """
-    child1 = parent1.copy()
-    child2 = parent2.copy()
-    return child1, child2
+    # Use PMX logic for reliability
+    return partially_mapped_crossover(parent1, parent2)
 
 
-def crossover_ox(parents: List[List[int]], crossover_rate: float = 0.8) -> List[List[int]]:
-    """
-    Apply Order Crossover to a list of parents.
-
-    Args:
-        parents: List of parent chromosomes (must be even number)
-        crossover_rate: Probability of applying crossover
-
-    Returns:
-        List of offspring chromosomes
-    """
-    offspring = []
-
-    for i in range(0, len(parents), 2):
-        if i + 1 >= len(parents):
-            offspring.append(parents[i].copy())
-            continue
-
-        parent1 = parents[i]
-        parent2 = parents[i + 1]
-
-        if random.random() < crossover_rate:
-            child1, child2 = order_crossover(parent1, parent2)
-            offspring.append(child1)
-            offspring.append(child2)
-        else:
-            offspring.append(parent1.copy())
-            offspring.append(parent2.copy())
-
-    return offspring
-
-
-def partially_mapped_crossover(parent1: List[int], parent2: List[int]) -> Tuple[List[int], List[int]]:
+def partially_mapped_crossover(
+    parent1: List[int], parent2: List[int]
+) -> Tuple[List[int], List[int]]:
     """
     Partially Mapped Crossover (PMX) for permutation with repetitions.
-    Simplified: children are copies of parents (rely on mutation for diversity).
+
+    Creates two children by exchanging a randomly selected segment between parents
+    while maintaining the correct count of each job ID.
 
     Args:
         parent1: First parent chromosome
@@ -172,12 +168,66 @@ def partially_mapped_crossover(parent1: List[int], parent2: List[int]) -> Tuple[
     Returns:
         Tuple of (child1, child2)
     """
-    child1 = parent1.copy()
-    child2 = parent2.copy()
+    size = len(parent1)
+
+    if size < 3:
+        return parent1.copy(), parent2.copy()
+
+    # Select two random cut points
+    cut1, cut2 = sorted(random.sample(range(size), 2))
+
+    # Count occurrences in each parent
+    from collections import Counter
+    count1 = Counter(parent1)
+    count2 = Counter(parent2)
+
+    # Initialize children with -1
+    child1 = [-1] * size
+    child2 = [-1] * size
+
+    # Copy segments between cut points
+    child1[cut1 : cut2 + 1] = parent1[cut1 : cut2 + 1]
+    child2[cut1 : cut2 + 1] = parent2[cut1 : cut2 + 1]
+
+    # Track what's been used in each child
+    used1 = Counter(child1[cut1 : cut2 + 1])
+    used2 = Counter(child2[cut1 : cut2 + 1])
+
+    # Fill remaining positions in child1 from parent2
+    p2_idx = 0
+    for i in range(size):
+        if i < cut1 or i > cut2:
+            # Find next element from parent2 that won't exceed the count
+            while p2_idx < size and used1[parent2[p2_idx]] >= count1[parent2[p2_idx]]:
+                p2_idx += 1
+            if p2_idx < size:
+                child1[i] = parent2[p2_idx]
+                used1[parent2[p2_idx]] += 1
+                p2_idx += 1
+            else:
+                # Fallback: just copy from parent1
+                child1[i] = parent1[i]
+
+    # Fill remaining positions in child2 from parent1
+    p1_idx = 0
+    for i in range(size):
+        if i < cut1 or i > cut2:
+            # Find next element from parent1 that won't exceed the count
+            while p1_idx < size and used2[parent1[p1_idx]] >= count2[parent1[p1_idx]]:
+                p1_idx += 1
+            if p1_idx < size:
+                child2[i] = parent1[p1_idx]
+                used2[parent1[p1_idx]] += 1
+                p1_idx += 1
+            else:
+                # Fallback: just copy from parent2
+                child2[i] = parent2[i]
+
     return child1, child2
 
-
-def crossover_pmx(parents: List[List[int]], crossover_rate: float = 0.8) -> List[List[int]]:
+def crossover_pmx(
+    parents: List[List[int]], crossover_rate: float = 0.8
+) -> List[List[int]]:
     """
     Apply Partially Mapped Crossover to a list of parents.
 
@@ -209,11 +259,51 @@ def crossover_pmx(parents: List[List[int]], crossover_rate: float = 0.8) -> List
     return offspring
 
 
+def crossover_ox(
+    parents: List[List[int]], crossover_rate: float = 0.8
+) -> List[List[int]]:
+    """
+    Apply Order Crossover to a list of parents.
+
+    Args:
+        parents: List of parent chromosomes (must be even number)
+        crossover_rate: Probability of applying crossover
+
+    Returns:
+        List of offspring chromosomes
+    """
+    offspring = []
+
+    for i in range(0, len(parents), 2):
+        if i + 1 >= len(parents):
+            offspring.append(parents[i].copy())
+            continue
+
+        parent1 = parents[i]
+        parent2 = parents[i + 1]
+
+        if random.random() < crossover_rate:
+            child1, child2 = order_crossover(parent1, parent2)
+            offspring.append(child1)
+            offspring.append(child2)
+        else:
+            offspring.append(parent1.copy())
+            offspring.append(parent2.copy())
+
+    return offspring
+
+
 # ==================== MUTATION OPERATORS ====================
+
 
 def swap_mutation(chromosome: List[int]) -> List[int]:
     """
     Swap mutation: swap two randomly selected elements.
+
+    Introduces small, localized changes for fine-tuning good solutions.
+    Helps maintain diversity without disrupting good building blocks.
+
+    Time Complexity: O(1) - constant time for selecting and swapping two positions.
 
     Args:
         chromosome: Chromosome to mutate
@@ -236,7 +326,9 @@ def swap_mutation(chromosome: List[int]) -> List[int]:
     return mutated
 
 
-def mutate_swap(population: List[List[int]], mutation_rate: float = 0.1) -> List[List[int]]:
+def mutate_swap(
+    population: List[List[int]], mutation_rate: float = 0.1
+) -> List[List[int]]:
     """
     Apply swap mutation to a population.
 
@@ -263,6 +355,12 @@ def inversion_mutation(chromosome: List[int]) -> List[int]:
     """
     Inversion mutation: reverse a randomly selected segment.
 
+    Introduces more significant changes for escaping local optima.
+    Can be disruptive in later generations when converged toward good solutions.
+    Needs careful balancing with other operators.
+
+    Time Complexity: O(1) - constant time for selecting positions and reversing segment.
+
     Args:
         chromosome: Chromosome to mutate
 
@@ -279,12 +377,14 @@ def inversion_mutation(chromosome: List[int]) -> List[int]:
     pos1, pos2 = sorted(random.sample(range(size), 2))
 
     # Reverse the segment between pos1 and pos2 (inclusive)
-    mutated[pos1:pos2 + 1] = mutated[pos1:pos2 + 1][::-1]
+    mutated[pos1 : pos2 + 1] = mutated[pos1 : pos2 + 1][::-1]
 
     return mutated
 
 
-def mutate_inversion(population: List[List[int]], mutation_rate: float = 0.1) -> List[List[int]]:
+def mutate_inversion(
+    population: List[List[int]], mutation_rate: float = 0.1
+) -> List[List[int]]:
     """
     Apply inversion mutation to a population.
 

@@ -1,9 +1,9 @@
 ================================================================================
-Optional Algorithm Experiments Log - Large Dataset (abz7) - 20260105_122815
+Optional Algorithm Experiments Log - Small Dataset (ft06) - 20260108_103649
 ================================================================================
 
 Loading instance...
-Loaded: 20 jobs, 15 machines
+Loaded: 6 jobs, 6 machines
 
 ================================================================================
 Experiment 1/6
@@ -17,15 +17,15 @@ Starting SA with configuration:
   Cooling rate: 0.995
   Mutation: swap
 ============================================================
-Iteration     0: Best = 1335, Temp = 995.00
-Iteration  1000: Best =  965, Temp = 6.62
-Iteration  2000: Best =  851, Temp = 0.04
-Iteration  3000: Best =  824, Temp = 0.00
-Iteration  4000: Best =  787, Temp = 0.00
+Iteration     0: Best =  119, Temp = 995.00
+Iteration  1000: Best =   60, Temp = 6.62
+Iteration  2000: Best =   59, Temp = 0.04
+Iteration  3000: Best =   59, Temp = 0.00
+Iteration  4000: Best =   58, Temp = 0.00
 
 ============================================================
 SA completed!
-Final best makespan: 780
+Final best makespan: 55
 ============================================================
 
 ================================================================================
@@ -40,15 +40,15 @@ Starting SA with configuration:
   Cooling rate: 0.995
   Mutation: inversion
 ============================================================
-Iteration     0: Best = 1212, Temp = 995.00
-Iteration  1000: Best =  995, Temp = 6.62
-Iteration  2000: Best =  927, Temp = 0.04
-Iteration  3000: Best =  903, Temp = 0.00
-Iteration  4000: Best =  880, Temp = 0.00
+Iteration     0: Best =   81, Temp = 995.00
+Iteration  1000: Best =   58, Temp = 6.62
+Iteration  2000: Best =   58, Temp = 0.04
+Iteration  3000: Best =   58, Temp = 0.00
+Iteration  4000: Best =   58, Temp = 0.00
 
 ============================================================
 SA completed!
-Final best makespan: 871
+Final best makespan: 58
 ============================================================
 
 ================================================================================
@@ -63,20 +63,20 @@ Starting SA with configuration:
   Cooling rate: 0.99
   Mutation: swap
 ============================================================
-Iteration     0: Best = 1393, Temp = 1485.00
-Iteration  1000: Best =  988, Temp = 0.06
-Iteration  2000: Best =  869, Temp = 0.00
-Iteration  3000: Best =  840, Temp = 0.00
-Iteration  4000: Best =  811, Temp = 0.00
-Iteration  5000: Best =  809, Temp = 0.00
-Iteration  6000: Best =  806, Temp = 0.00
-Iteration  7000: Best =  806, Temp = 0.00
-Iteration  8000: Best =  795, Temp = 0.00
-Iteration  9000: Best =  795, Temp = 0.00
+Iteration     0: Best =   89, Temp = 1485.00
+Iteration  1000: Best =   58, Temp = 0.06
+Iteration  2000: Best =   55, Temp = 0.00
+Iteration  3000: Best =   55, Temp = 0.00
+Iteration  4000: Best =   55, Temp = 0.00
+Iteration  5000: Best =   55, Temp = 0.00
+Iteration  6000: Best =   55, Temp = 0.00
+Iteration  7000: Best =   55, Temp = 0.00
+Iteration  8000: Best =   55, Temp = 0.00
+Iteration  9000: Best =   55, Temp = 0.00
 
 ============================================================
 SA completed!
-Final best makespan: 793
+Final best makespan: 55
 ============================================================
 
 ================================================================================
@@ -91,20 +91,20 @@ Starting SA with configuration:
   Cooling rate: 0.99
   Mutation: inversion
 ============================================================
-Iteration     0: Best = 1258, Temp = 1485.00
-Iteration  1000: Best =  962, Temp = 0.06
-Iteration  2000: Best =  903, Temp = 0.00
-Iteration  3000: Best =  865, Temp = 0.00
-Iteration  4000: Best =  845, Temp = 0.00
-Iteration  5000: Best =  845, Temp = 0.00
-Iteration  6000: Best =  845, Temp = 0.00
-Iteration  7000: Best =  842, Temp = 0.00
-Iteration  8000: Best =  838, Temp = 0.00
-Iteration  9000: Best =  838, Temp = 0.00
+Iteration     0: Best =   92, Temp = 1485.00
+Iteration  1000: Best =   58, Temp = 0.06
+Iteration  2000: Best =   57, Temp = 0.00
+Iteration  3000: Best =   55, Temp = 0.00
+Iteration  4000: Best =   55, Temp = 0.00
+Iteration  5000: Best =   55, Temp = 0.00
+Iteration  6000: Best =   55, Temp = 0.00
+Iteration  7000: Best =   55, Temp = 0.00
+Iteration  8000: Best =   55, Temp = 0.00
+Iteration  9000: Best =   55, Temp = 0.00
 
 ============================================================
 SA completed!
-Final best makespan: 838
+Final best makespan: 55
 ============================================================
 
 ================================================================================
@@ -119,25 +119,25 @@ Starting SA with configuration:
   Cooling rate: 0.995
   Mutation: swap
 ============================================================
-Iteration     0: Best = 1191, Temp = 1990.00
-Iteration  1000: Best = 1029, Temp = 13.24
-Iteration  2000: Best =  804, Temp = 0.09
-Iteration  3000: Best =  786, Temp = 0.00
-Iteration  4000: Best =  781, Temp = 0.00
-Iteration  5000: Best =  777, Temp = 0.00
-Iteration  6000: Best =  767, Temp = 0.00
-Iteration  7000: Best =  757, Temp = 0.00
-Iteration  8000: Best =  753, Temp = 0.00
-Iteration  9000: Best =  742, Temp = 0.00
-Iteration 10000: Best =  742, Temp = 0.00
-Iteration 11000: Best =  742, Temp = 0.00
-Iteration 12000: Best =  742, Temp = 0.00
-Iteration 13000: Best =  740, Temp = 0.00
-Iteration 14000: Best =  740, Temp = 0.00
+Iteration     0: Best =   64, Temp = 1990.00
+Iteration  1000: Best =   60, Temp = 13.24
+Iteration  2000: Best =   60, Temp = 0.09
+Iteration  3000: Best =   59, Temp = 0.00
+Iteration  4000: Best =   57, Temp = 0.00
+Iteration  5000: Best =   57, Temp = 0.00
+Iteration  6000: Best =   55, Temp = 0.00
+Iteration  7000: Best =   55, Temp = 0.00
+Iteration  8000: Best =   55, Temp = 0.00
+Iteration  9000: Best =   55, Temp = 0.00
+Iteration 10000: Best =   55, Temp = 0.00
+Iteration 11000: Best =   55, Temp = 0.00
+Iteration 12000: Best =   55, Temp = 0.00
+Iteration 13000: Best =   55, Temp = 0.00
+Iteration 14000: Best =   55, Temp = 0.00
 
 ============================================================
 SA completed!
-Final best makespan: 740
+Final best makespan: 55
 ============================================================
 
 ================================================================================
@@ -152,23 +152,23 @@ Starting SA with configuration:
   Cooling rate: 0.99
   Mutation: inversion
 ============================================================
-Iteration     0: Best = 1302, Temp = 1980.00
-Iteration  1000: Best =  922, Temp = 0.09
-Iteration  2000: Best =  877, Temp = 0.00
-Iteration  3000: Best =  853, Temp = 0.00
-Iteration  4000: Best =  846, Temp = 0.00
-Iteration  5000: Best =  835, Temp = 0.00
-Iteration  6000: Best =  835, Temp = 0.00
-Iteration  7000: Best =  831, Temp = 0.00
-Iteration  8000: Best =  824, Temp = 0.00
-Iteration  9000: Best =  819, Temp = 0.00
-Iteration 10000: Best =  819, Temp = 0.00
-Iteration 11000: Best =  807, Temp = 0.00
-Iteration 12000: Best =  807, Temp = 0.00
-Iteration 13000: Best =  800, Temp = 0.00
-Iteration 14000: Best =  795, Temp = 0.00
+Iteration     0: Best =   95, Temp = 1980.00
+Iteration  1000: Best =   58, Temp = 0.09
+Iteration  2000: Best =   58, Temp = 0.00
+Iteration  3000: Best =   55, Temp = 0.00
+Iteration  4000: Best =   55, Temp = 0.00
+Iteration  5000: Best =   55, Temp = 0.00
+Iteration  6000: Best =   55, Temp = 0.00
+Iteration  7000: Best =   55, Temp = 0.00
+Iteration  8000: Best =   55, Temp = 0.00
+Iteration  9000: Best =   55, Temp = 0.00
+Iteration 10000: Best =   55, Temp = 0.00
+Iteration 11000: Best =   55, Temp = 0.00
+Iteration 12000: Best =   55, Temp = 0.00
+Iteration 13000: Best =   55, Temp = 0.00
+Iteration 14000: Best =   55, Temp = 0.00
 
 ============================================================
 SA completed!
-Final best makespan: 791
+Final best makespan: 55
 ============================================================

@@ -36,7 +36,9 @@ def setup_experiment(results_subdir, experiment_type):
     Returns:
         tuple: (results_dir, timestamp, log_file, logger, original_stdout)
     """
-    project_root = os.path.dirname(os.path.dirname(os.getcwd()))
+    # Get the absolute path of the shared directory and navigate to project root
+    shared_dir = os.path.dirname(os.path.abspath(__file__))
+    project_root = os.path.dirname(shared_dir)
     
     results_dir = os.path.join(project_root, f'results/{results_subdir}')
     

@@ -13,7 +13,9 @@ from shared.encoding import create_random_chromosome
 from shared.fitness import compute_makespan
 
 # Load operators
-project_root = os.path.dirname(os.path.dirname(os.getcwd()))
+# Get the absolute path of the shared directory and navigate to project root
+shared_dir = os.path.dirname(os.path.abspath(__file__))
+project_root = os.path.dirname(shared_dir)
 spec = importlib.util.spec_from_file_location('operators', os.path.join(project_root, 'genetic-algorithm', 'operators.py'))
 operators = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(operators)

@@ -5,7 +5,9 @@ GA experiments for JSSP - Large Dataset (abz7).
 
 import sys
 import os
-project_root = os.path.dirname(os.path.dirname(os.getcwd()))
+# Get the absolute path of the experiments directory and navigate to project root
+experiments_dir = os.path.dirname(os.path.abspath(__file__))
+project_root = os.path.dirname(os.path.dirname(experiments_dir))
 sys.path.insert(0, project_root)
 
 import traceback
