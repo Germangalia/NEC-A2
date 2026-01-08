@@ -20,13 +20,29 @@ NEC-A2/
 │   ├── fitness.py           # Makespan calculation and validation
 │   ├── validator.py         # Chromosome validation
 │   ├── utils.py             # Visualization and logging utilities
-│   └── encoding.py          # Chromosome encoding and initialization
-├── genetic-algorithm/        # GA implementation
+│   ├── encoding.py          # Chromosome encoding and initialization
+│   ├── ga_algorithm.py      # Genetic Algorithm implementation
+│   ├── sa_algorithm.py      # Simulated Annealing implementation
+│   └── experiment_utils.py  # Experiment management utilities
+├── genetic-algorithm/        # GA main entry point
 │   ├── operators.py         # Selection, crossover, mutation operators
 │   └── main.py              # GA main execution script
-├── optional-algorithm/       # SA implementation
+├── optional-algorithm/       # SA main entry point
 │   └── main.py              # SA main execution script
+├── experiments/              # Batch experiment scripts
+│   ├── small/               # Small instance experiments (ft06)
+│   ├── medium/              # Medium instance experiments (ft10)
+│   ├── large/               # Large instance experiments (abz7)
+│   ├── optional-small/      # SA small instance experiments
+│   ├── optional-medium/     # SA medium instance experiments
+│   └── optional-large/      # SA large instance experiments
 └── results/                  # Experiment outputs
+    ├── small/               # FT06 GA results
+    ├── medium/              # FT10 GA results
+    ├── large/               # ABZ7 GA results
+    ├── optional-small/      # FT06 SA results
+    ├── optional-medium/     # FT10 SA results
+    └── optional-large/      # ABZ7 SA results
 ```
 
 ## Dataset Selection
@@ -159,29 +175,47 @@ Each experiment generates:
 To run multiple experiments with different parameter combinations:
 
 ```bash
-# Run 6 experiments on ft06 (small dataset)
-cd experiments
-python run_experiments_simple.py
+# Run GA experiments on small dataset (ft06)
+cd experiments/small
+python run_experiments.py
+
+# Run GA experiments on medium dataset (ft10)
+cd experiments/medium
+python run_experiments.py
+
+# Run GA experiments on large dataset (abz7)
+cd experiments/large
+python run_experiments.py
+
+# Run SA experiments on small dataset (ft06)
+cd experiments/optional-small
+python run_experiments.py
+
+# Run SA experiments on medium dataset (ft10)
+cd experiments/optional-medium
+python run_experiments.py
+
+# Run SA experiments on large dataset (abz7)
+cd experiments/optional-large
+python run_experiments.py
 ```
 
 This will:
 - Run 6 experiments with different parameter combinations
-- Save detailed execution logs to `results/experiment_log_*.txt`
-- Save summary CSV to `results/experiment_summary_*.csv`
-- Generate evolution plots for each experiment
-
-### Running on Different Datasets
-
-Modify the instance name in `experiments/run_experiments_simple.py`:
-- Small: `ft06` (6 jobs, 6 machines)
-- Medium: `ft10` (10 jobs, 10 machines)  
-- Large: `abz7` (20 jobs, 15 machines)
+- Save detailed execution logs to `results/{dataset}/experiment_log_*.txt`
+- Save summary CSV to `results/{dataset}/experiment_summary_*.csv`
+- Generate evolution plots and comparison plots for each experiment
 
 ### Expected Results
 
-For ft06 instance:
-- Optimal makespan: 55
-- GA should find solutions in range 55-65
-- Evolution plots should show convergence over generations
+**Genetic Algorithm Results:**
+- FT06 (small): Best makespan 59 (optimal: 55, gap: 7.3%)
+- FT10 (medium): Best makespan 1040 (optimal: 930, gap: 11.8%)
+- ABZ7 (large): Best makespan 954 (optimal: 656, gap: 45.4%)
+
+**Simulated Annealing Results:**
+- FT06 (small): Best makespan 55 (optimal: 55, gap: 0%)
+- FT10 (medium): Best makespan 1066 (optimal: 930, gap: 14.6%)
+- ABZ7 (large): Best makespan 749 (optimal: 656, gap: 14.2%)
 
 Results files are saved in the `results/` directory with timestamps for tracking.
